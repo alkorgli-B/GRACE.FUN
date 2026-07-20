@@ -34,9 +34,11 @@ export default function Home() {
     <main className="min-h-screen bg-[#050505] text-white font-sans">
       <audio ref={audioRef} src="/music.mp3" loop />
       
-      {/* Navbar مع رابط X */}
+      {/* Navbar مع تطبيق الألوان على الاسم */}
       <nav className="flex justify-between items-center px-6 py-6 max-w-6xl mx-auto">
-        <div className="text-2xl font-black text-green-500">$GRACE</div>
+        <div className="text-2xl font-black uppercase bg-gradient-to-r from-yellow-400 via-orange-500 to-blue-500 bg-clip-text text-transparent">
+          $GRACE
+        </div>
         <div className="flex items-center gap-4">
           <a href="https://x.com/graceonpons?s=21" target="_blank" className="p-2 border border-white/10 rounded-full hover:bg-white/10">
             <Twitter size={18} />
@@ -52,6 +54,7 @@ export default function Home() {
           <img src="/image_9.png.JPG" alt="Banner" className="w-full h-auto" />
         </div>
         
+        {/* العنوان الرئيسي بألوان النيون */}
         <h1 className="text-5xl md:text-8xl font-black uppercase mb-2 tracking-tighter">
           <span className="bg-gradient-to-r from-yellow-400 via-orange-500 to-blue-500 bg-clip-text text-transparent drop-shadow-[0_0_10px_rgba(255,255,255,0.5)]">
             $GRACE
@@ -72,6 +75,7 @@ export default function Home() {
         </div>
       </section>
 
+      {/* معرض الصور */}
       <section className="max-w-6xl mx-auto px-4 py-12">
         <div className="grid grid-cols-2 md:grid-cols-3 gap-6">
           {memes.map((m, i) => (
