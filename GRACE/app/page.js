@@ -1,7 +1,7 @@
 'use client';
 import { useState, useRef } from 'react';
 import { motion } from 'framer-motion';
-import { Volume2, VolumeX, Rocket } from 'lucide-react';
+import { Volume2, VolumeX, Rocket, Twitter } from 'lucide-react';
 
 export default function Home() {
   const [copied, setCopied] = useState(false);
@@ -11,9 +11,11 @@ export default function Home() {
   const contractAddress = "0xf05bAbB8172beA20E974B458C593399bE11250DD"; 
 
   const toggleMusic = () => {
-    if (isPlaying) audioRef.current.pause();
-    else audioRef.current.play();
-    setIsPlaying(!isPlaying);
+    if (audioRef.current) {
+      if (isPlaying) audioRef.current.pause();
+      else audioRef.current.play();
+      setIsPlaying(!isPlaying);
+    }
   };
 
   const memes = [
@@ -23,7 +25,7 @@ export default function Home() {
     { src: '/image_4.png.PNG', title: 'Grace the Warrior' },
     { src: '/image_5.png.PNG', title: 'Grace on Fire' },
     { src: '/image_6.png.PNG', title: 'Grace Straw Hat' },
-    { src: '/image_7.png.PNG', title: 'Grace the Chef' },
+    { src: '/image_7.png.JPG', title: 'Grace the Chef' },
     { src: '/image_8.png.PNG', title: 'Grace Close-up' },
     { src: '/image_10.png.JPG', title: 'Grace & Friends' },
   ];
@@ -32,11 +34,17 @@ export default function Home() {
     <main className="min-h-screen bg-[#050505] text-white font-sans">
       <audio ref={audioRef} src="/music.mp3" loop />
       
+      {/* Navbar مع رابط X */}
       <nav className="flex justify-between items-center px-6 py-6 max-w-6xl mx-auto">
         <div className="text-2xl font-black text-green-500">$GRACE</div>
-        <button onClick={toggleMusic} className="p-2 border border-white/10 rounded-full hover:bg-white/10">
-          {isPlaying ? <Volume2 size={18} /> : <VolumeX size={18} />}
-        </button>
+        <div className="flex items-center gap-4">
+          <a href="https://x.com/graceonpons?s=21" target="_blank" className="p-2 border border-white/10 rounded-full hover:bg-white/10">
+            <Twitter size={18} />
+          </a>
+          <button onClick={toggleMusic} className="p-2 border border-white/10 rounded-full hover:bg-white/10">
+            {isPlaying ? <Volume2 size={18} /> : <VolumeX size={18} />}
+          </button>
+        </div>
       </nav>
 
       <section className="flex flex-col items-center justify-center text-center px-4 py-12">
@@ -51,8 +59,8 @@ export default function Home() {
         </h1>
         <p className="text-xl md:text-3xl font-medium italic text-white/90 mb-8">The GOATest black cat on the internet</p>
 
-        {/* زر الشراء الجديد */}
-        <a href="https://pons.link/launchpad" target="_blank" className="flex items-center gap-2 bg-white text-black font-black px-8 py-4 rounded-2xl text-lg hover:scale-105 transition-transform mb-6">
+        {/* رابط الشراء الصحيح */}
+        <a href="https://ponsfamily.com/launchpad/0xf05bAbB8172beA20E974B458C593399bE11250DD" target="_blank" className="flex items-center gap-2 bg-white text-black font-black px-8 py-4 rounded-2xl text-lg hover:scale-105 transition-transform mb-6">
           <Rocket size={20} /> Buy on Pons Launchpad
         </a>
 
@@ -83,4 +91,3 @@ export default function Home() {
     </main>
   );
 }
-
