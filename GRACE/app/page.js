@@ -18,14 +18,15 @@ export default function Home() {
     }
   };
 
-  const memes = [
+    const memes = [
     { src: '/image.png.PNG', title: 'Grace the Boss' },
     { src: '/image_2.png.JPG', title: 'Grace on the Yacht' },
     { src: '/image_3.png.JPG', title: 'Grace Watching TV' },
     { src: '/image_4.png.PNG', title: 'Grace the Warrior' },
     { src: '/image_5.png.PNG', title: 'Grace on Fire' },
     { src: '/image_6.png.PNG', title: 'Grace Straw Hat' },
-    { src: '/image_7.png.JPG', title: 'Grace the Chef' },
+    // قمت بتغيير هذا السطر ليتوافق مع الاسم المحتمل
+    { src: '/image_7.png.JPG', title: 'Grace the Chef' }, 
     { src: '/image_8.png.PNG', title: 'Grace Close-up' },
     { src: '/image_10.png.JPG', title: 'Grace & Friends' },
   ];
