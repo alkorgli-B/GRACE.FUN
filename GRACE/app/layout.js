@@ -1,8 +1,8 @@
-import './globals.css'
+import './global.css'
 
 export const metadata = {
   title: '$GRACE - The GOATest Black Cat',
-  description: 'The official website for $GRACE memecoin on Pons Network',
+  description: 'The official website for $GRACE memecoin',
 }
 
 export default function RootLayout({ children }) {
@@ -12,3 +12,4 @@ export default function RootLayout({ children }) {
     </html>
   )
 }
+
