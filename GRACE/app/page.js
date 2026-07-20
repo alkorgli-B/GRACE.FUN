@@ -1,7 +1,7 @@
 'use client';
-import { useState, useRef } from 'react';
-import { motion } from 'framer-motion';
-import { Volume2, VolumeX, Rocket } from 'lucide-react';
+import { useState, useRef, useEffect } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
+import { Volume2, VolumeX, Rocket, Copy, Check, Star, Code2 } from 'lucide-react';
 
 export default function Home() {
   const [copied, setCopied] = useState(false);
@@ -11,75 +11,69 @@ export default function Home() {
   const contractAddress = "0xf05bAbB8172beA20E974B458C593399bE11250DD"; 
 
   const toggleMusic = () => {
-    if (isPlaying) audioRef.current.pause();
-    else audioRef.current.play();
-    setIsPlaying(!isPlaying);
+    if (audioRef.current) {
+      isPlaying ? audioRef.current.pause() : audioRef.current.play();
+      setIsPlaying(!isPlaying);
+    }
   };
 
-  const memes = [
-    { src: '/image.png.PNG', title: 'Grace the Boss' },
-    { src: '/image_2.png.JPG', title: 'Grace on the Yacht' },
-    { src: '/image_3.png.JPG', title: 'Grace Watching TV' },
-    { src: '/image_4.png.PNG', title: 'Grace the Warrior' },
-    { src: '/image_5.png.PNG', title: 'Grace on Fire' },
-    { src: '/image_6.png.PNG', title: 'Grace Straw Hat' },
-    { src: '/image_7.png.PNG', title: 'Grace the Chef' },
-    { src: '/image_8.png.PNG', title: 'Grace Close-up' },
-    { src: '/image_10.png.JPG', title: 'Grace & Friends' },
-  ];
-
   return (
-    <main className="min-h-screen bg-[#050505] text-white font-sans">
+    <main className="min-h-screen bg-[#020202] text-white selection:bg-green-500 selection:text-black overflow-x-hidden">
       <audio ref={audioRef} src="/music.mp3" loop />
       
-      <nav className="flex justify-between items-center px-6 py-6 max-w-6xl mx-auto">
-        <div className="text-2xl font-black text-green-500">$GRACE</div>
-        <button onClick={toggleMusic} className="p-2 border border-white/10 rounded-full hover:bg-white/10">
-          {isPlaying ? <Volume2 size={18} /> : <VolumeX size={18} />}
-        </button>
-      </nav>
+      {/* Dynamic Background Effect */}
+      <div className="fixed inset-0 z-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-green-900/10 via-black to-black" />
 
-      <section className="flex flex-col items-center justify-center text-center px-4 py-12">
-        <div className="w-full max-w-2xl rounded-2xl overflow-hidden border border-white/10 mb-8 shadow-[0_0_50px_-12px_rgba(34,197,94,0.3)]">
-          <img src="/image_9.png.JPG" alt="Banner" className="w-full h-auto" />
-        </div>
-        
-        <h1 className="text-5xl md:text-8xl font-black uppercase mb-2 tracking-tighter">
-          <span className="bg-gradient-to-r from-yellow-400 via-orange-500 to-blue-500 bg-clip-text text-transparent drop-shadow-[0_0_10px_rgba(255,255,255,0.5)]">
+      <div className="relative z-10 max-w-6xl mx-auto px-6">
+        {/* Modern Header */}
+        <nav className="flex justify-between items-center py-8">
+          <motion.div initial={{ x: -20, opacity: 0 }} animate={{ x: 0, opacity: 1 }} className="text-2xl font-black italic tracking-tighter text-green-400">
             $GRACE
-          </span>
-        </h1>
-        <p className="text-xl md:text-3xl font-medium italic text-white/90 mb-8">The GOATest black cat on the internet</p>
+          </motion.div>
+          <motion.button whileHover={{ scale: 1.1 }} onClick={toggleMusic} className="p-3 bg-white/5 rounded-full border border-white/10 backdrop-blur-md">
+            {isPlaying ? <Volume2 size={20} /> : <VolumeX size={20} />}
+          </motion.button>
+        </nav>
 
-        {/* زر الشراء الجديد */}
-        <a href="https://pons.link/launchpad" target="_blank" className="flex items-center gap-2 bg-white text-black font-black px-8 py-4 rounded-2xl text-lg hover:scale-105 transition-transform mb-6">
-          <Rocket size={20} /> Buy on Pons Launchpad
-        </a>
+        {/* Hero Section - Viral Design */}
+        <header className="flex flex-col items-center text-center py-16">
+          <motion.div initial={{ scale: 0.9, opacity: 0 }} animate={{ scale: 1, opacity: 1 }} className="w-full max-w-xl mb-10 rounded-3xl overflow-hidden border border-white/10 shadow-[0_0_80px_-20px_rgba(34,197,94,0.4)]">
+            <img src="/image_9.png.JPG" alt="GRACE" className="w-full hover:scale-105 transition-transform duration-700" />
+          </motion.div>
 
-        <div className="flex items-center gap-4 bg-[#111] border border-white/10 rounded-2xl p-2 max-w-md w-full">
-            <span className="text-xs font-mono text-gray-400 px-3 truncate">{contractAddress}</span>
-            <button onClick={() => {navigator.clipboard.writeText(contractAddress); setCopied(true);}} className="bg-green-500 text-black font-bold px-4 py-2 rounded-xl text-sm">
-                {copied ? "Copied!" : "Copy CA"}
-            </button>
-        </div>
-      </section>
+          <motion.h1 initial={{ y: 20 }} animate={{ y: 0 }} className="text-6xl md:text-9xl font-black uppercase mb-4 tracking-tighter">
+            <span className="bg-gradient-to-r from-yellow-400 via-orange-500 to-blue-500 bg-clip-text text-transparent drop-shadow-[0_0_15px_rgba(255,255,255,0.4)]">
+              $GRACE
+            </span>
+          </motion.h1>
+          
+          <p className="text-xl md:text-4xl font-light italic text-gray-300 mb-10">The GOATest black cat on the internet</p>
 
-      <section className="max-w-6xl mx-auto px-4 py-12">
-        <div className="grid grid-cols-2 md:grid-cols-3 gap-6">
-          {memes.map((m, i) => (
-            <motion.div whileHover={{ scale: 1.05 }} key={i} className="bg-[#111] border border-white/5 rounded-2xl p-2">
-              <img src={m.src} alt={m.title} className="w-full aspect-square object-cover rounded-xl" />
-              <p className="text-center py-2 text-xs text-gray-400">{m.title}</p>
-            </motion.div>
-          ))}
-        </div>
-      </section>
+          <motion.a whileHover={{ scale: 1.05 }} href="https://pons.link/launchpad" className="flex items-center gap-3 bg-white text-black font-black px-10 py-5 rounded-full text-lg shadow-[0_0_30px_rgba(255,255,255,0.2)] mb-8">
+            <Rocket /> Buy on Pons Launchpad
+          </motion.a>
 
-      {/* Footer */}
-      <footer className="text-center py-12 text-gray-500 text-sm border-t border-white/5">
-        <p>© 2026 $GRACE CLAN. BUILT FOR THE PONS FAMILY.</p>
-        <p className="mt-2 text-gray-600 font-bold">Design by Bader</p>
-      </footer>
+          <div className="flex items-center gap-4 bg-[#0a0a0a] border border-white/10 p-3 rounded-2xl cursor-pointer hover:border-green-500 transition-colors" onClick={() => {navigator.clipboard.writeText(contractAddress); setCopied(true);}}>
+            <span className="font-mono text-sm px-2 text-gray-400 truncate max-w-[200px]">{contractAddress}</span>
+            {copied ? <Check className="text-green-500" /> : <Copy size={16} />}
+          </div>
+        </header>
+
+        {/* Footer with Professional Dev Signature */}
+        <footer className="py-20 border-t border-white/5 mt-10 text-center">
+          <div className="flex justify-center gap-2 mb-6">
+            <Star className="text-yellow-500" fill="currentColor" />
+            <span className="text-gray-400 font-bold uppercase tracking-widest text-sm">2026 $GRACE CLAN</span>
+          </div>
+          
+          <motion.div whileHover={{ y: -5 }} className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-white/5 border border-white/10">
+            <Code2 size={16} className="text-green-500" />
+            <span className="text-xs uppercase tracking-tighter text-gray-400">
+              Crafted with perfection by <span className="text-white font-black italic">Bader</span>
+            </span>
+          </motion.div>
+        </footer>
+      </div>
     </main>
   );
 }
