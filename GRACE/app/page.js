@@ -25,7 +25,6 @@ export default function Home() {
     { src: '/image_4.png.PNG', title: 'Grace the Warrior' },
     { src: '/image_5.png.PNG', title: 'Grace on Fire' },
     { src: '/image_6.png.PNG', title: 'Grace Straw Hat' },
-    // قمت بتغيير هذا السطر ليتوافق مع الاسم المحتمل
     { src: '/image_7.png.JPG', title: 'Grace the Chef' }, 
     { src: '/image_8.png.PNG', title: 'Grace Close-up' },
     { src: '/image_10.png.JPG', title: 'Grace & Friends' },
@@ -35,7 +34,6 @@ export default function Home() {
     <main className="min-h-screen bg-[#050505] text-white font-sans">
       <audio ref={audioRef} src="/music.mp3" loop />
       
-      {/* Navbar مع تطبيق الألوان على الاسم */}
       <nav className="flex justify-between items-center px-6 py-6 max-w-6xl mx-auto">
         <div className="text-2xl font-black uppercase bg-gradient-to-r from-yellow-400 via-orange-500 to-blue-500 bg-clip-text text-transparent">
           $GRACE
@@ -55,7 +53,6 @@ export default function Home() {
           <img src="/image_9.png.JPG" alt="Banner" className="w-full h-auto" />
         </div>
         
-        {/* العنوان الرئيسي بألوان النيون */}
         <h1 className="text-5xl md:text-8xl font-black uppercase mb-2 tracking-tighter">
           <span className="bg-gradient-to-r from-yellow-400 via-orange-500 to-blue-500 bg-clip-text text-transparent drop-shadow-[0_0_10px_rgba(255,255,255,0.5)]">
             $GRACE
@@ -63,7 +60,6 @@ export default function Home() {
         </h1>
         <p className="text-xl md:text-3xl font-medium italic text-white/90 mb-8">The GOATest black cat on the internet</p>
 
-        {/* رابط الشراء الصحيح */}
         <a href="https://ponsfamily.com/launchpad/0xf05bAbB8172beA20E974B458C593399bE11250DD" target="_blank" className="flex items-center gap-2 bg-white text-black font-black px-8 py-4 rounded-2xl text-lg hover:scale-105 transition-transform mb-6">
           <Rocket size={20} /> Buy on Pons Launchpad
         </a>
@@ -76,7 +72,6 @@ export default function Home() {
         </div>
       </section>
 
-      {/* معرض الصور */}
       <section className="max-w-6xl mx-auto px-4 py-12">
         <div className="grid grid-cols-2 md:grid-cols-3 gap-6">
           {memes.map((m, i) => (
