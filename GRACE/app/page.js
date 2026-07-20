@@ -1,7 +1,7 @@
 'use client';
 import { useState, useRef } from 'react';
 import { motion } from 'framer-motion';
-import { Twitter, Copy, Check, ExternalLink, Rocket, Volume2, VolumeX } from 'lucide-react';
+import { Volume2, VolumeX, Rocket } from 'lucide-react';
 
 export default function Home() {
   const [copied, setCopied] = useState(false);
@@ -11,11 +11,8 @@ export default function Home() {
   const contractAddress = "0xf05bAbB8172beA20E974B458C593399bE11250DD"; 
 
   const toggleMusic = () => {
-    if (isPlaying) {
-      audioRef.current.pause();
-    } else {
-      audioRef.current.play();
-    }
+    if (isPlaying) audioRef.current.pause();
+    else audioRef.current.play();
     setIsPlaying(!isPlaying);
   };
 
@@ -35,18 +32,13 @@ export default function Home() {
     <main className="min-h-screen bg-[#050505] text-white font-sans">
       <audio ref={audioRef} src="/music.mp3" loop />
       
-      {/* Navbar */}
       <nav className="flex justify-between items-center px-6 py-6 max-w-6xl mx-auto">
         <div className="text-2xl font-black text-green-500">$GRACE</div>
-        <div className="flex gap-4">
-          <button onClick={toggleMusic} className="p-2 border border-white/10 rounded-full hover:bg-white/10">
-            {isPlaying ? <Volume2 size={18} /> : <VolumeX size={18} />}
-          </button>
-          <a href="https://x.com/graceonpons" target="_blank" className="text-sm border border-white/10 px-4 py-2 rounded-full hover:bg-white/10">@graceonpons</a>
-        </div>
+        <button onClick={toggleMusic} className="p-2 border border-white/10 rounded-full hover:bg-white/10">
+          {isPlaying ? <Volume2 size={18} /> : <VolumeX size={18} />}
+        </button>
       </nav>
 
-      {/* Hero */}
       <section className="flex flex-col items-center justify-center text-center px-4 py-12">
         <div className="w-full max-w-2xl rounded-2xl overflow-hidden border border-white/10 mb-8 shadow-[0_0_50px_-12px_rgba(34,197,94,0.3)]">
           <img src="/image_9.png.JPG" alt="Banner" className="w-full h-auto" />
@@ -57,9 +49,12 @@ export default function Home() {
             $GRACE
           </span>
         </h1>
-        <p className="text-xl md:text-3xl font-medium italic text-white/90 mb-8">
-          The GOATest black cat on the internet
-        </p>
+        <p className="text-xl md:text-3xl font-medium italic text-white/90 mb-8">The GOATest black cat on the internet</p>
+
+        {/* زر الشراء الجديد */}
+        <a href="https://pons.link/launchpad" target="_blank" className="flex items-center gap-2 bg-white text-black font-black px-8 py-4 rounded-2xl text-lg hover:scale-105 transition-transform mb-6">
+          <Rocket size={20} /> Buy on Pons Launchpad
+        </a>
 
         <div className="flex items-center gap-4 bg-[#111] border border-white/10 rounded-2xl p-2 max-w-md w-full">
             <span className="text-xs font-mono text-gray-400 px-3 truncate">{contractAddress}</span>
@@ -69,7 +64,6 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Gallery */}
       <section className="max-w-6xl mx-auto px-4 py-12">
         <div className="grid grid-cols-2 md:grid-cols-3 gap-6">
           {memes.map((m, i) => (
@@ -80,6 +74,12 @@ export default function Home() {
           ))}
         </div>
       </section>
+
+      {/* Footer */}
+      <footer className="text-center py-12 text-gray-500 text-sm border-t border-white/5">
+        <p>© 2026 $GRACE CLAN. BUILT FOR THE PONS FAMILY.</p>
+        <p className="mt-2 text-gray-600 font-bold">Design by Bader</p>
+      </footer>
     </main>
   );
 }
